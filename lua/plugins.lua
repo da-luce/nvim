@@ -40,9 +40,30 @@ return packer.startup(function(use)
     use 'embark-theme/vim'
     use 'Domeee/mosel.nvim'
     use 'rose-pine/neovim'
+    use 'tiagovla/tokyodark.nvim'
 
     -- dependencies
     use 'nvim-lua/plenary.nvim'
+
+    use {
+        'folke/noice.nvim',
+        requires = 'MunifTanjim/nui.nvim',
+    }
+
+    use {
+        'akinsho/toggleterm.nvim',
+        config = function()
+            require("plugins.toggleterm")
+        end
+    }
+
+    --[[ dashboard
+    use {
+        'goolord/alpha-nvim',
+        config = function()
+            require("plugins.alpha")
+        end
+    }--]]
 
     --[[ scrollbar
     use {
@@ -83,7 +104,7 @@ return packer.startup(function(use)
         requires = {
             -- LSP Support
             {'neovim/nvim-lspconfig'},
-            {'williamboman/mason.nvim'},
+            {'wislliamboman/mason.nvim'},
             {'williamboman/mason-lspconfig.nvim'},
 
             -- Autocompletion

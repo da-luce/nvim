@@ -10,7 +10,7 @@ local options = {
     mouse = "a",        -- enable mouse in all modes
     clipboard = "unnamedplus", -- allows neovim to access system keyboard
     termguicolors = true, -- set term gui
-
+    background = "dark"
 }
 
 vim.opt.spelllang = "en_us" -- enable English spell checking
