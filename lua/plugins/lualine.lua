@@ -7,12 +7,13 @@ require('lualine').setup {
         disabled_filetypes = { "alpha", "dashboard"},
         globalstatus = true,
         component_separators = { left = '', right = ''},
-     section_separators = { left = '', right = ''},
+        section_separators = { left = '', right = ''},
 
     },
-    sections = {
-        lualine_c = {
-            { navic.get_location, cond = navic.is_available },
-        }
+    --[[
+    Only avaiable for Nvim 0.8 +
+    winbar = {
+        { navic.get_location, cond = navic.is_available },
     }
+    ]]
 }

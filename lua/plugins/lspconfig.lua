@@ -8,6 +8,9 @@ require('lspconfig')['sumneko_lua'].setup {
       },
       telemetry = { enable = false }
     },
+    on_attach = function(client, bufnr)
+        require("nvim-navic").attach(client, bufnr)
+    end
   },
 }
 require('lspconfig')['clangd'].setup {}

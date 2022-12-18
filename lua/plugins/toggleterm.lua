@@ -5,5 +5,5 @@ if not status_ok then
 end
 
 toggleterm.setup {
-
+    direction = 'horizontal',
 }

@@ -1,1 +1,2 @@
-/plugin
+# Packer compiled isn't necessarily up to date. Run :PackerSync on instalation
+plugin/packer_compiled.lua

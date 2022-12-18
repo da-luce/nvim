@@ -41,6 +41,7 @@ return packer.startup(function(use)
     use 'Domeee/mosel.nvim'
     use 'rose-pine/neovim'
     use 'tiagovla/tokyodark.nvim'
+    use 'projekt0n/github-nvim-theme'
 
     -- dependencies
     use 'nvim-lua/plenary.nvim'
@@ -207,9 +208,11 @@ return packer.startup(function(use)
         'nvim-telescope/telescope.nvim',
         tag = '0.1.0',
         requires = {
-            {'nvim-lua/plenary.nvim'},
-            {'nvim-treesitter/nvim-treesitter'},
-            {'BurntSushi/ripgrep'}
+            {'nvim-lua/plenary.nvim'}, -- general 
+            {'nvim-treesitter/nvim-treesitter'}, -- finder/preview highlighting
+            {'BurntSushi/ripgrep'}, --required for live_grep and grep_string
+            {'nvim-telescope/telescope-fzf-native.nvim'}, -- better sorting performance
+
         },
         config = function()
             require("plugins.telescope")
