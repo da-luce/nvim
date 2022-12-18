@@ -14,6 +14,7 @@ packer.init {
         git = {
             clone_timeout = 300, -- Timeout, in seconds, for git clones
         },
+        prompt_border = 'single',
 }
 
 return packer.startup(function(use)
@@ -47,10 +48,23 @@ return packer.startup(function(use)
     use 'nvim-lua/plenary.nvim'
 
     use {
+        'b0o/incline.nvim',
+        config = function()
+            require("plugins.incline")
+        end
+    }
+    --[[
+    -- better buffer deletion
+    use 'famiu/bufdelete.nvim'
+    ]]
+
+    -- Doesn't work without 0.8 >
+    use {
         'folke/noice.nvim',
         requires = 'MunifTanjim/nui.nvim',
     }
 
+    -- Better terminals
     use {
         'akinsho/toggleterm.nvim',
         config = function()

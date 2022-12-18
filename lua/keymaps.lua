@@ -37,7 +37,8 @@ map("n", "<S-h>", ":bprevious<CR>", opts)
 map("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
-map("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
+-- map("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
+map("n", "<S-q>", ":bd<CR>", opts)
 
 -- Better paste
 map("v", "p", '"_dP', opts)
@@ -71,3 +72,7 @@ map("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.
 
 -- Lsp
 map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+
+-- ToggleTerm
+map("n", "<leader>t", ":ToggleTerm<CR>", opts) -- Open a new terminal
+map("n", "<leader>tt", ":ToggleTermToggleAll<CR>", opts)

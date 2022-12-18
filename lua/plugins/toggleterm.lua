@@ -6,4 +6,5 @@ end
 
 toggleterm.setup {
     direction = 'horizontal',
+    shade_terminals = false,
 }
