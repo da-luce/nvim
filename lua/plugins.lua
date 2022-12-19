@@ -233,6 +233,8 @@ return packer.startup(function(use)
     use 'hrsh7th/cmp-nvim-lua'      -- nvim-cmp source for the Neovim Lua API
     use 'f3fora/cmp-spell'          -- nvim-cmp source for vim's spellsuggest
 
+    use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
+
     -- Display diagnostics
     use {
         "folke/trouble.nvim",
