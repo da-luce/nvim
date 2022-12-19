@@ -56,6 +56,25 @@ return packer.startup(function(use)
     -- dependencies
     use 'nvim-lua/plenary.nvim'
 
+    -- Sessions
+
+    -- Automatically save and resotre sessions based on cwd
+    use {
+        'rmagatti/auto-session',
+        config = function()
+            require("plugins.auto-session")
+        end
+    }
+
+    -- Use auto-session in Telescope
+    use {
+        'rmagatti/session-lens',
+        requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
+        config = function()
+            require("plugins.session-lens")
+        end
+    }
+
     --[[
     use {
         'b0o/incline.nvim',

@@ -19,17 +19,17 @@ db.custom_header = {
 db.custom_center = {
 
     {icon = '  ',
-    desc = 'Recently latest session                 ',
-    action = 'SessionLoad',
+    desc = 'Recent Sessions                         ',
+    action = 'Telescope session-lens search_session',
     shortcut = 's      '},
 
     {icon = '  ',
-    desc = 'Recently opened files                   ',
+    desc = 'Recent Files                            ',
     action =  'Telescope oldfiles',
     shortcut = 'r      '},
 
     {icon = '  ',
-    desc = 'Find  File                              ',
+    desc = 'Find File                               ',
     action = 'Telescope find_files find_command=rg,--hidden,--files',
     shortcut = 'f      '},
 
@@ -73,7 +73,7 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = "dashboard",
     group = vim.api.nvim_create_augroup("dashboard_enter", { clear = true }),
     callback = function ()
-        vim.keymap.set("n", "s", ":SessionLoad<CR>", { buffer = true, silent = true })
+        vim.keymap.set("n", "s", ":Telescope session-lens search_session<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "r", ":Telescope oldfiles<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "f", ":Telescope find_files find_command=rg, --hidden, --files<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "b", ":Telescope file_browser<CR.", { buffer = true, silent = true })
