@@ -1,5 +1,6 @@
 -- Use a protected call so don't error out on first use
 local status_ok, packer = pcall(require, "packer")
+
 if not status_ok then
 	return
 end
@@ -22,55 +23,68 @@ return packer.startup(function(use)
     -- Packer
     use 'wbthomason/packer.nvim'
 
+    -- Improved start speed
+    use {
+        'lewis6991/impatient.nvim',
+        config = function()
+            require('impatient').enable_profile()
+        end
+    }
+
     -- Colorschemes
     use 'folke/tokyonight.nvim'
-    use 'cocopon/iceberg.vim'
-    use 'marko-cerovac/material.nvim'
-    use 'kyazdani42/blue-moon'
-    use 'sainnhe/edge'
-    use 'bkegley/gloombuddy'
-    use 'shaunsingh/nord.nvim'
-    use 'shaunsingh/moonlight.nvim'
-    use 'navarasu/onedark.nvim'
-    use 'yashguptaz/calvera-dark.nvim'
-    use 'catppuccin/nvim'
-    use 'FrenzyExists/aquarium-vim'
-    use 'olimorris/onedarkpro.nvim'
-    use 'rebelot/kanagawa.nvim'
-    use 'Yazeed1s/minimal.nvim'
-    use 'embark-theme/vim'
-    use 'Domeee/mosel.nvim'
-    use 'rose-pine/neovim'
     use 'tiagovla/tokyodark.nvim'
-    use 'projekt0n/github-nvim-theme'
+    -- use 'cocopon/iceberg.vim'
+    -- use 'marko-cerovac/material.nvim'
+    -- use 'kyazdani42/blue-moon'
+    -- use 'sainnhe/edge'
+    -- use 'bkegley/gloombuddy'
+    -- use 'shaunsingh/nord.nvim'
+    -- use 'shaunsingh/moonlight.nvim'
+    -- use 'navarasu/onedark.nvim'
+    -- use 'yashguptaz/calvera-dark.nvim'
+    -- use 'catppuccin/nvim'
+    -- use 'FrenzyExists/aquarium-vim'
+    -- use 'olimorris/onedarkpro.nvim'
+    -- use 'rebelot/kanagawa.nvim'
+    -- use 'Yazeed1s/minimal.nvim'
+    -- use 'embark-theme/vim'
+    -- use 'Domeee/mosel.nvim'
+    -- use 'rose-pine/neovim'
+    -- use 'projekt0n/github-nvim-theme'
 
     -- dependencies
     use 'nvim-lua/plenary.nvim'
 
+    --[[
     use {
         'b0o/incline.nvim',
         config = function()
             require("plugins.incline")
         end
     }
+    ]]
+
     --[[
     -- better buffer deletion
     use 'famiu/bufdelete.nvim'
     ]]
 
-    -- Doesn't work without 0.8 >
+    --[[ Doesn't work without 0.8 >
     use {
         'folke/noice.nvim',
         requires = 'MunifTanjim/nui.nvim',
     }
+    ]]
 
-    -- Better terminals
+    --[[ Better terminals
     use {
         'akinsho/toggleterm.nvim',
         config = function()
             require("plugins.toggleterm")
         end
     }
+    ]]
 
     --[[ dashboard
     use {
@@ -89,13 +103,14 @@ return packer.startup(function(use)
     }
     --]]
 
-    -- better search bar
+    --[[ better search bar
     use {
         'VonHeikemen/searchbox.nvim',
         requires = {
             {'MunifTanjim/nui.nvim'}
         }
     }
+    ]]
 
     -- Auto pair brackets, parenthesis, etc. 
     use {
@@ -104,15 +119,16 @@ return packer.startup(function(use)
             require("plugins.autopairs")
         end
     }
-
-    -- Symbol outline
+    
+    --[[ Symbol outline
     use {
         'simrat39/symbols-outline.nvim',
         config = function()
             require("plugins.outline")
         end
     }
-    
+    ]]
+
     --[[
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -140,7 +156,7 @@ return packer.startup(function(use)
     }
     --]]
 
-    -- Breadcrumbs
+    --[[ Breadcrumbs - implement once >0.8
     use {
         'SmiteshP/nvim-navic',
         requires = "neovim/nvim-lspconfig",
@@ -148,6 +164,7 @@ return packer.startup(function(use)
             require("plugins.breadcrumbs")
         end
     }
+    ]]
 
     -- Git support
     use {
