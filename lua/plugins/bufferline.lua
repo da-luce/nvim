@@ -17,8 +17,10 @@ bufferline.setup {
             {
                 filetype = "NvimTree",
                 text = "",
-                highlight = "PanelHeading",
+                -- Removing fixes tokyodark and doesn't seem to affect other themes
+                --highlight = "PanelHeading",
                 padding = 1,
+                text_align = "center",
             },
         },
     },
