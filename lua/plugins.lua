@@ -42,7 +42,7 @@ return packer.startup(function(use)
     -- use 'shaunsingh/nord.nvim'
     -- use 'shaunsingh/moonlight.nvim'
     -- use 'navarasu/onedark.nvim'
-    -- use 'yashguptaz/calvera-dark.nvim'
+    use 'yashguptaz/calvera-dark.nvim'
     -- use 'catppuccin/nvim'
     -- use 'FrenzyExists/aquarium-vim'
     -- use 'olimorris/onedarkpro.nvim'
@@ -53,10 +53,10 @@ return packer.startup(function(use)
     -- use 'rose-pine/neovim'
     -- use 'projekt0n/github-nvim-theme'
 
-    -- dependencies
+    -- Common dependencies
     use 'nvim-lua/plenary.nvim'
 
-    -- Sessions
+    -- SESSIONS --
 
     -- Automatically save and resotre sessions based on cwd
     use {
@@ -75,6 +75,13 @@ return packer.startup(function(use)
         end
     }
 
+    -- Smooth scrolling
+    use {
+        'karb94/neoscroll.nvim',
+        config = function ()
+            require("plugins.neoscroll")
+        end
+    }
     --[[
     use {
         'b0o/incline.nvim',
@@ -218,7 +225,12 @@ return packer.startup(function(use)
     }
 
     -- Which key (why?)
-    use 'folke/which-key.nvim'
+    use {
+        'folke/which-key.nvim',
+        config = function ()
+            require("plugins.which-key")
+        end
+    }
 
     use {
         'hrsh7th/nvim-cmp',         -- Autocompletion
@@ -233,7 +245,7 @@ return packer.startup(function(use)
     use 'hrsh7th/cmp-nvim-lua'      -- nvim-cmp source for the Neovim Lua API
     use 'f3fora/cmp-spell'          -- nvim-cmp source for vim's spellsuggest
 
-    use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
+    use({"L3MON4D3/LuaSnip", tag = "v1.*"})
 
     -- Display diagnostics
     use {

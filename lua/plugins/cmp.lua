@@ -15,6 +15,7 @@ local check_backspace = function()
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
+-- Icons for formatting
 local kind_icons = {
 	Text = "",
 	Method = "",
@@ -92,17 +93,18 @@ cmp.setup({
 			"s",
 		}),
 	}),
+    -- Format completion menue
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
 			vim_item.kind = kind_icons[vim_item.kind]
 			vim_item.menu = ({
-				nvim_lsp = "",
-				nvim_lua = "",
-				luasnip = "",
-				buffer = "",
-				path = "",
-				emoji = "",
+				nvim_lsp = "[LSP]",
+				nvim_lua = "[NVIMLUA]",
+				luasnip = "[LUASNIP]",
+				buffer = "[BUFFER]",
+				path = "[PATH]",
+				emoji = "[EMOJI]",
 			})[entry.source.name]
 			return vim_item
 		end,
@@ -114,6 +116,7 @@ cmp.setup({
 		{ name = "buffer" },
 		{ name = "path" },
 	},
+    -- Replace doesn't work correctly
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
@@ -127,7 +130,7 @@ cmp.setup({
 	},
 })
 
-  -- Set configuration for specific filetype.
+-- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
         { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.

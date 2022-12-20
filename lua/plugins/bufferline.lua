@@ -11,8 +11,8 @@ bufferline.setup {
         close_command = "Bdelete! %d",
         left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
         right_mouse_command = "vertical sbuffer %d", -- can be a string | function, see "Mouse actions"
-        offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
         separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
+        tab_size = 20, -- increase tab size, default 18
         offsets = {
             {
                 filetype = "NvimTree",

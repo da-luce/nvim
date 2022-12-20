@@ -1,8 +1,12 @@
 require("indent_blankline").setup {
-    -- for example, context is off by default, use this to turn it on
-    show_current_context = true,
-    show_current_context_start = true,
-    filetype_exclude = { "dashboard" },
+    show_current_context = true,            -- highlight current context
+    show_current_context_start = false,     -- get rid of underline on start of context
+    show_end_of_line = false,
+    show_trailing_blankline_indent = false,
+    space_char_blankline = " ",
+    use_treesitter = true,
+    filetype_exclude = {"help", "dashboard", "packer", "NvimTree", "Trouble", "TelescopePrompt", "Float"},
+    buftype_exclude = {"terminal", "telescope", "nofile"},
 }
 
 -- vim.opt.list = true
