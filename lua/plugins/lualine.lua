@@ -1,4 +1,4 @@
--- local navic = require("nvim-navic")
+local navic = require("nvim-navic")
 
 require('lualine').setup {
     options = {
@@ -11,9 +11,26 @@ require('lualine').setup {
 
     },
     --[[
-    Only avaiable for Nvim 0.8 +
     winbar = {
-        { navic.get_location, cond = navic.is_available },
-    }
-    ]]
+        lualine_a = { navic.get_location },
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
+    },
+    inactive_winbar = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
+    }]]
+    --[[
+    sections = {
+        lualine_c = {
+            { navic.get_location, cond = navic.is_available },
+        }
+    }]]
 }

@@ -1,6 +1,56 @@
-require('lspconfig')['pyright'].setup {}
+local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_status_ok then
+	return
+end
 
-require('lspconfig')['sumneko_lua'].setup {
+local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not cmp_nvim_lsp_status_ok then
+	return
+end
+
+local navic_lsp_status_ok, navic = pcall(require, "nvim-navic")
+if not navic_lsp_status_ok then
+	return
+end
+
+local on_attach = function(client, bufnr)
+    if client.server_capabilities.documentSymbolProvider then
+		navic.attach(client, bufnr)
+	end
+end
+
+local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+-- used to enable autocompletion (assign to every lsp server config)
+local capabilities = cmp_nvim_lsp.default_capabilities()
+
+-- Setup pyright server (Python)
+lspconfig['pyright'].setup {
+    capabilities = capabilities,
+	on_attach = on_attach,
+}
+
+-- Setup clangd server (C/C++)
+lspconfig['clangd'].setup {
+    apabilities = capabilities,
+	on_attach = on_attach,
+}
+
+-- Setup eslint server (Javascript?)
+lspconfig['eslint'].setup {
+    apabilities = capabilities,
+	on_attach = on_attach,
+    root_dir = require('lspconfig').util.root_pattern('.js');
+}
+
+-- Setup sumneko_lua server (Lua)
+lspconfig['sumneko_lua'].setup {
+    apabilities = capabilities,
+	on_attach = on_attach,
     settings = {
     Lua = {
       diagnostics = {
@@ -8,23 +58,5 @@ require('lspconfig')['sumneko_lua'].setup {
       },
       telemetry = { enable = false }
     },
-    on_attach = function(client, bufnr)
-        require("nvim-navic").attach(client, bufnr)
-    end
   },
-}
-require('lspconfig')['clangd'].setup {}
-
-require('lspconfig')['eslint'].setup {
-    root_dir = require('lspconfig').util.root_pattern('.js');
-}
-
-require('lspconfig').lua.setup {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
 }

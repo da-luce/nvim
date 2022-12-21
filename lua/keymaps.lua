@@ -37,10 +37,10 @@ map("n", "<S-h>", ":bprevious<CR>", opts)
 map("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
--- map("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
-map("n", "<S-q>", ":bd<CR>", opts)
+map("n", "<S-q>", "<cmd>Bdelete<CR>", opts)
+--map("n", "<S-q>", ":bd<CR>", opts)
 
--- Better paste
+-- Better paste (could this be the source of clipboard hangs?)
 map("v", "p", '"_dP', opts)
 
 -- INSERT --

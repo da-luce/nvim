@@ -20,7 +20,7 @@ packer.init {
 
 return packer.startup(function(use)
 
-    -- Packer
+    -- Plugin manager
     use 'wbthomason/packer.nvim'
 
     -- Improved start speed
@@ -42,7 +42,7 @@ return packer.startup(function(use)
     -- use 'shaunsingh/nord.nvim'
     -- use 'shaunsingh/moonlight.nvim'
     -- use 'navarasu/onedark.nvim'
-    use 'yashguptaz/calvera-dark.nvim'
+    -- use 'yashguptaz/calvera-dark.nvim'
     -- use 'catppuccin/nvim'
     -- use 'FrenzyExists/aquarium-vim'
     -- use 'olimorris/onedarkpro.nvim'
@@ -56,17 +56,79 @@ return packer.startup(function(use)
     -- Common dependencies
     use 'nvim-lua/plenary.nvim'
 
-    -- SESSIONS --
+    -- Start screen
+    use {
+        'glepnir/dashboard-nvim',
+        config = function()
+            require("plugins.dashboard")
+        end
+    }
 
-    -- Automatically save and resotre sessions based on cwd
+    -- File explorer
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+            'kyazdani42/nvim-web-devicons',
+        },
+        tag = 'nightly',
+        config = function()
+            require("plugins.nvim-tree")
+        end
+    }
+
+    -- Buffers
+    use {
+        'akinsho/bufferline.nvim',
+        tag = "v3.*",
+        requires = 'ryanoasis/vim-devicons',
+        config = function()
+            require("plugins.bufferline")
+        end
+    }
+    use 'famiu/bufdelete.nvim'  -- Preserve window layout when deleting buffers
+
+    -- Status line
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = {
+            {'kyazdani42/nvim-web-devicons', opt = true}
+        },
+        config = function()
+            require("plugins.lualine")
+        end
+    }
+
+    -- Symbol outline
+    use {
+        'simrat39/symbols-outline.nvim',
+        config = function ()
+            require("plugins.outline")
+        end
+    }
+
+    -- Show tab indents
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = function()
+            require("plugins.blankline")
+        end
+    }
+
+    -- Auto pair brackets, parenthesis, etc. 
+    use {
+        'windwp/nvim-autopairs',
+        config = function()
+            require("plugins.autopairs")
+        end
+    }
+
+    -- Sessions
     use {
         'rmagatti/auto-session',
         config = function()
             require("plugins.auto-session")
         end
     }
-
-    -- Use auto-session in Telescope
     use {
         'rmagatti/session-lens',
         requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
@@ -82,107 +144,54 @@ return packer.startup(function(use)
             require("plugins.neoscroll")
         end
     }
-    --[[
-    use {
-        'b0o/incline.nvim',
-        config = function()
-            require("plugins.incline")
-        end
-    }
-    ]]
 
-    --[[
-    -- better buffer deletion
-    use 'famiu/bufdelete.nvim'
-    ]]
-
-    --[[ Doesn't work without 0.8 >
+    --[[ Replaced UI for cmdline, messages and popups (not stable enough yet)
     use {
         'folke/noice.nvim',
-        requires = 'MunifTanjim/nui.nvim',
-    }
-    ]]
-
-    --[[ Better terminals
-    use {
-        'akinsho/toggleterm.nvim',
-        config = function()
-            require("plugins.toggleterm")
+        requires = {
+            'MunifTanjim/nui.nvim',
+            'rcarriga/nvim-notify'
+        },
+        config = function ()
+            require("plugins.noice")
         end
-    }
-    ]]
+    }]]
 
-    --[[ dashboard
-    use {
-        'goolord/alpha-nvim',
-        config = function()
-            require("plugins.alpha")
-        end
-    }--]]
-
-    --[[ scrollbar
-    use {
-        'petertriho/nvim-scrollbar',
-        config = function()
-            require("plugins.scrol::xlbar")
-        end
-    }
-    --]]
-
-    --[[ better search bar
+    -- Searchbox
     use {
         'VonHeikemen/searchbox.nvim',
         requires = {
             {'MunifTanjim/nui.nvim'}
         }
     }
-    ]]
 
-    -- Auto pair brackets, parenthesis, etc. 
+    -- Git
     use {
-        'windwp/nvim-autopairs',
+        'lewis6991/gitsigns.nvim',
         config = function()
-            require("plugins.autopairs")
+            require("plugins.gitsigns")
         end
     }
-    
-    --[[ Symbol outline
+    use 'tpope/vim-fugitive'
+
+    -- Manage and install LSP servers
+    use 'williamboman/mason-lspconfig.nvim'
     use {
-        'simrat39/symbols-outline.nvim',
+        'williamboman/mason.nvim',
         config = function()
-            require("plugins.outline")
+            require("plugins.mason")
         end
     }
-    ]]
 
-    --[[
+    -- Config for LSP Servers
     use {
-        'VonHeikemen/lsp-zero.nvim',
-        requires = {
-            -- LSP Support
-            {'neovim/nvim-lspconfig'},
-            {'wislliamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
-
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-buffer'},
-            {'hrsh7th/cmp-path'},
-            {'saadparwaiz1/cmp_luasnip'},
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'hrsh7th/cmp-nvim-lua'},
-
-            -- Snippets
-            {'L3MON4D3/LuaSnip'},
-            {'rafamadriz/friendly-snippets'},
-        },
+        'neovim/nvim-lspconfig',
         config = function()
-            require("plugins.lsp-zero")
+            require("plugins.lspconfig")
         end
     }
-    --]]
 
-    --[[ Breadcrumbs - implement once >0.8
+    -- Breadcrumbs
     use {
         'SmiteshP/nvim-navic',
         requires = "neovim/nvim-lspconfig",
@@ -190,41 +199,8 @@ return packer.startup(function(use)
             require("plugins.breadcrumbs")
         end
     }
-    ]]
 
-    -- Git support
-    use {
-        'lewis6991/gitsigns.nvim',
-        config = function()
-            require("plugins.gitsigns")          -- Git signs
-        end
-    }
-    use 'tpope/vim-fugitive'                    -- Git integration
-
-    -- LSP Setup
-    use {
-        'williamboman/mason.nvim',
-        config = function()
-            require("plugins.mason")
-        end
-    }
-    use {
-        'williamboman/mason-lspconfig.nvim',
-        config = function()
-            require("plugins.mason-lsp")
-        end
-    }
-    use 'neovim/nvim-lspconfig'
-
-    -- Start screen
-    use {
-        'glepnir/dashboard-nvim',
-        config = function()
-            require("plugins.dashboard")
-        end
-    }
-
-    -- Which key (why?)
+    -- Which key
     use {
         'folke/which-key.nvim',
         config = function ()
@@ -232,8 +208,9 @@ return packer.startup(function(use)
         end
     }
 
+    -- Autocompletion
     use {
-        'hrsh7th/nvim-cmp',         -- Autocompletion
+        'hrsh7th/nvim-cmp',
         config = function()
             require("plugins.cmp")
         end
@@ -245,6 +222,7 @@ return packer.startup(function(use)
     use 'hrsh7th/cmp-nvim-lua'      -- nvim-cmp source for the Neovim Lua API
     use 'f3fora/cmp-spell'          -- nvim-cmp source for vim's spellsuggest
 
+    -- Snippets
     use({"L3MON4D3/LuaSnip", tag = "v1.*"})
 
     -- Display diagnostics
@@ -256,33 +234,21 @@ return packer.startup(function(use)
         end
     }
 
-
-    -- Buffer tabs
-    use {
-        'akinsho/bufferline.nvim',
-        tag = "v3.*",
-        requires = 'ryanoasis/vim-devicons',
-        config = function()
-            require("plugins.bufferline")
-        end
-    }
-
-    -- Fuzzy finder
+    -- Telescope
     use {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.0',
         requires = {
-            {'nvim-lua/plenary.nvim'}, -- general 
-            {'nvim-treesitter/nvim-treesitter'}, -- finder/preview highlighting
-            {'BurntSushi/ripgrep'}, --required for live_grep and grep_string
-            {'nvim-telescope/telescope-fzf-native.nvim'}, -- better sorting performance
-
+            {'nvim-lua/plenary.nvim'},                      -- general 
+            {'nvim-treesitter/nvim-treesitter'},            -- finder/preview highlighting
+            {'BurntSushi/ripgrep'},                         -- required for live_grep and grep_string
+            {'nvim-telescope/telescope-fzf-native.nvim'},   -- better sorting performance
+            {'nvim-telescope/telescope-file-browser.nvim'}, -- file browser
         },
         config = function()
             require("plugins.telescope")
         end
     }
-    use 'nvim-telescope/telescope-file-browser.nvim'
 
     -- Better syntax highlighting
     use {
@@ -298,37 +264,6 @@ return packer.startup(function(use)
         'lewis6991/spellsitter.nvim',
         config = function()
             require("plugins.spellsitter")
-        end
-    }
-
-    -- Status line
-    use {
-        'nvim-lualine/lualine.nvim',
-        requires = {
-            {'kyazdani42/nvim-web-devicons', opt = true}
-        },
-        config = function()
-            require("plugins.lualine")
-        end
-    }
-
-    -- File explorer
-    use {
-        'kyazdani42/nvim-tree.lua',
-        requires = {
-            'kyazdani42/nvim-web-devicons', -- optional, for file icons
-        },
-        tag = 'nightly', -- optional, updated every week. (see issue #1193)
-        config = function()
-            require("plugins.nvim-tree")
-        end
-    }
-
-    -- Show tab indents
-    use {
-        'lukas-reineke/indent-blankline.nvim',
-        config = function()
-            require("plugins.blankline")
         end
     }
 
