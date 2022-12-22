@@ -116,6 +116,7 @@ cmp.setup({
 		{ name = "buffer" },
 		{ name = "path" },
 	},
+
     -- Replace doesn't work correctly
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,

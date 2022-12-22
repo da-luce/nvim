@@ -143,7 +143,7 @@ return packer.startup(function(use)
     use {
         'williamboman/mason.nvim',
         config = function()
-            require("plugins.config.mason")
+            require("plugins.config.lsp.mason")
         end
     }
 
@@ -151,7 +151,7 @@ return packer.startup(function(use)
     use {
         'neovim/nvim-lspconfig',
         config = function()
-            require("plugins.config.lspconfig")
+            require("plugins.config.lsp.lspconfig")
         end
     }
 
@@ -184,7 +184,6 @@ return packer.startup(function(use)
     use 'hrsh7th/cmp-cmdline'       -- nvim-cmp source for vim's cmdline
     use 'hrsh7th/cmp-nvim-lsp'      -- nvim-cmp source for Neovim builtin LSP client
     use 'hrsh7th/cmp-nvim-lua'      -- nvim-cmp source for the Neovim Lua API
-    use 'f3fora/cmp-spell'          -- nvim-cmp source for vim's spellsuggest
 
     -- Snippets
     use({"L3MON4D3/LuaSnip", tag = "v1.*"})

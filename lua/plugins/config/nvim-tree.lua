@@ -48,4 +48,8 @@ tree.setup {
             error = "",
         },
     },
+    git = {
+        enable = true,
+        ignore = false,  -- show ignored directories/files
+    }
 }

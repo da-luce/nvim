@@ -1,5 +1,4 @@
--- TODO: autocommands not working
-
+-- Toggle trailing whitespaces
 local toggle_trailing = vim.api.nvim_create_augroup("ToggleTrailing", {clear = true})
 
 vim.api.nvim_create_autocmd(
@@ -20,46 +19,13 @@ vim.api.nvim_create_autocmd(
     }
 )
 
---local toggle_mouse = vim.api.nvim_create_augroup("ToggleMouse", {clear = true})
--- Disable mouse in dashboard
---[[vim.api.nvim_create_autocmd(
-    -- Event 
-    "User",
-    -- Options
-    {
-        pattern = "dashboardReady",
-        command = "set mouse=",
-    }
-)]]
---[[
--- Re-enable mouse when leaving dashboard
+-- Show diagnostic window on cursor move (TODO: find better method)
 vim.api.nvim_create_autocmd(
-    -- Event 
-    {"BufUnload"},
-    -- Options
+    "CursorMoved",
     {
-        pattern = "<buffer>",
-        command = "set mouse=a",
-        group = toggle_mouse,
+        desc = "Show diagnostic menu on cursor hover",
+        callback = function ()
+            vim.diagnostic.open_float()
+        end
     }
-)]]
-
---alpha autocmds
---[[
-    local toggle_bufferline = vim.api.nvim_create_augroup("ToggleBufferline", { clear = true })
-vim.api.nvim_create_autocmd("User", {
-  callback = function()
-    vim.o.showtabline = 0
-  end,
-  group = toggle_bufferline,
-  pattern = "AlphaReady",
-})
-vim.api.nvim_create_autocmd("BufUnload", {
-  callback = function()
-    print("running this..")
-    vim.o.showtabline = 2
-  end,
-  group = toggle_bufferline,
-  pattern = "<buffer>",
-})
-]]
+)

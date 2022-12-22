@@ -31,7 +31,6 @@ local options = {
     wrap = false,               -- display lines as one long line
     sidescrolloff = 8,          -- minimal number of screen columns to left and right of the cursor if wrap is `false`
 
-    spelllang = "en_us",        -- spell check in US english
 
     -- Character highlights
 
@@ -41,8 +40,14 @@ local options = {
     },
     list = true,
     fillchars = {
-        eob = ' ',               -- show empty lines at the end of a buffer as ` ` {default `~`}
-    }
+        eob = ' ',               -- show empty lines at the end of a buffer as ` ` (default `~`)
+    },
+
+    -- Miscellaneous
+    --[[
+    spell = true,               -- enable spell checking (because I suck at spelling)
+    spelllang = "en_us",        -- spell check in US English
+    ]]
 }
 
 -- Set options
@@ -50,18 +55,5 @@ for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
--- Additional options 
+-- Additional options
 vim.opt.iskeyword:append("-")       -- treats words with `-` as single words
-
-vim.diagnostic.config({
-    virtual_text = false,           -- Turn off inline diagnostics
-    signs = true,
-    float = { border = "rounded" },
-})
-
-vim.cmd('autocmd CursorMoved * lua vim.diagnostic.open_float()')
-
--- ??
-vim.g.symbols_outline = {
-    highlight_hovered_item = false,
-}
