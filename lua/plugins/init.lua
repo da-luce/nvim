@@ -36,6 +36,9 @@ return packer.startup(function(use)
     -- Colorschemes
     use 'tiagovla/tokyodark.nvim'
     use 'folke/tokyonight.nvim'
+    use 'catppuccin/nvim'
+    use 'sam4llis/nvim-tundra'
+    use 'hoppercomplex/calvera-dark.nvim'
 
     -- Common dependencies
     use 'nvim-lua/plenary.nvim'
