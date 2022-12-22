@@ -5,6 +5,10 @@ if not status_ok then
 end
 
 -- Header
+
+-- Center entire view
+db.header_pad = math.floor((vim.fn.winheight(0) - 27) / 2)
+
 db.custom_header = {
     [[                                         ]],
     [[     _   ____________ _    ________  ___ ]],
@@ -21,37 +25,37 @@ db.custom_center = {
     {icon = '  ',
     desc = 'Recent Sessions                         ',
     action = 'Telescope session-lens search_session',
-    shortcut = 's      '},
+    shortcut = 's'},
 
     {icon = '  ',
     desc = 'Recent Files                            ',
     action =  'Telescope oldfiles',
-    shortcut = 'r      '},
+    shortcut = 'r'},
 
     {icon = '  ',
     desc = 'Find File                               ',
     action = 'Telescope find_files find_command=rg,--hidden,--files',
-    shortcut = 'f      '},
+    shortcut = 'f'},
 
     {icon = '  ',
     desc = 'File Browser                            ',
     action =  'Telescope file_browser',
-    shortcut = 'b      '},
+    shortcut = 'b'},
 
     {icon = '  ',
     desc = 'Update Packages                         ',
     action = 'PackerSync',
-    shortcut = 'u      '},
+    shortcut = 'u'},
 
     {icon = '  ',
     desc = 'Configure                               ',
-    action = 'cd ~/.config/nvim | Telescope file_browser',
-    shortcut = 'c      '},
+    action = 'cd ~/.config/nvim/lua | :NvimTreeOpen',
+    shortcut = 'c'},
 
     {icon = '  ',
     desc = 'Quit                                    ',
     action = ':qa',
-    shortcut = 'q      '}
+    shortcut = 'q'}
 }
 
 db.center_pad = 2
@@ -76,9 +80,9 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.keymap.set("n", "s", ":Telescope session-lens search_session<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "r", ":Telescope oldfiles<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "f", ":Telescope find_files find_command=rg, --hidden, --files<CR>", { buffer = true, silent = true })
-        vim.keymap.set("n", "b", ":Telescope file_browser<CR.", { buffer = true, silent = true })
+        vim.keymap.set("n", "b", ":Telescope file_browser<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "u", ":PackerSync<CR>", { buffer = true, silent = true })
-        vim.keymap.set("n", "c", ":cd ~/.config/nvim | Telescope file_browser<CR>", { buffer = true, silent = true })
+        vim.keymap.set("n", "c", ":cd ~/.config/nvim/lua/ | e plugins/init.lua | NvimTreeOpen <CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "q", ":qa<CR>", { buffer = true, silent = true })
     end
 })

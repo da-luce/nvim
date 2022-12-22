@@ -31,27 +31,11 @@ return packer.startup(function(use)
         end
     }
 
+    -- USER INTERFACE
+
     -- Colorschemes
-    use 'folke/tokyonight.nvim'
     use 'tiagovla/tokyodark.nvim'
-    -- use 'cocopon/iceberg.vim'
-    -- use 'marko-cerovac/material.nvim'
-    -- use 'kyazdani42/blue-moon'
-    -- use 'sainnhe/edge'
-    -- use 'bkegley/gloombuddy'
-    -- use 'shaunsingh/nord.nvim'
-    -- use 'shaunsingh/moonlight.nvim'
-    -- use 'navarasu/onedark.nvim'
-    -- use 'yashguptaz/calvera-dark.nvim'
-    -- use 'catppuccin/nvim'
-    -- use 'FrenzyExists/aquarium-vim'
-    -- use 'olimorris/onedarkpro.nvim'
-    -- use 'rebelot/kanagawa.nvim'
-    -- use 'Yazeed1s/minimal.nvim'
-    -- use 'embark-theme/vim'
-    -- use 'Domeee/mosel.nvim'
-    -- use 'rose-pine/neovim'
-    -- use 'projekt0n/github-nvim-theme'
+    use 'folke/tokyonight.nvim'
 
     -- Common dependencies
     use 'nvim-lua/plenary.nvim'
@@ -60,7 +44,7 @@ return packer.startup(function(use)
     use {
         'glepnir/dashboard-nvim',
         config = function()
-            require("plugins.dashboard")
+            require("plugins.config.dashboard")
         end
     }
 
@@ -72,7 +56,7 @@ return packer.startup(function(use)
         },
         tag = 'nightly',
         config = function()
-            require("plugins.nvim-tree")
+            require("plugins.config.nvim-tree")
         end
     }
 
@@ -82,7 +66,7 @@ return packer.startup(function(use)
         tag = "v3.*",
         requires = 'ryanoasis/vim-devicons',
         config = function()
-            require("plugins.bufferline")
+            require("plugins.config.bufferline")
         end
     }
     use 'famiu/bufdelete.nvim'  -- Preserve window layout when deleting buffers
@@ -94,23 +78,26 @@ return packer.startup(function(use)
             {'kyazdani42/nvim-web-devicons', opt = true}
         },
         config = function()
-            require("plugins.lualine")
+            require("plugins.config.lualine")
         end
     }
 
-    -- Symbol outline
+    -- EDITOR PLUGINS
+
+    -- Git
     use {
-        'simrat39/symbols-outline.nvim',
-        config = function ()
-            require("plugins.outline")
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require("plugins.config.gitsigns")
         end
     }
+    use 'tpope/vim-fugitive'
 
     -- Show tab indents
     use {
         'lukas-reineke/indent-blankline.nvim',
         config = function()
-            require("plugins.blankline")
+            require("plugins.config.blankline")
         end
     }
 
@@ -118,22 +105,7 @@ return packer.startup(function(use)
     use {
         'windwp/nvim-autopairs',
         config = function()
-            require("plugins.autopairs")
-        end
-    }
-
-    -- Sessions
-    use {
-        'rmagatti/auto-session',
-        config = function()
-            require("plugins.auto-session")
-        end
-    }
-    use {
-        'rmagatti/session-lens',
-        requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
-        config = function()
-            require("plugins.session-lens")
+            require("plugins.config.autopairs")
         end
     }
 
@@ -141,45 +113,34 @@ return packer.startup(function(use)
     use {
         'karb94/neoscroll.nvim',
         config = function ()
-            require("plugins.neoscroll")
+            require("plugins.config.neoscroll")
         end
     }
 
-    --[[ Replaced UI for cmdline, messages and popups (not stable enough yet)
-    use {
-        'folke/noice.nvim',
-        requires = {
-            'MunifTanjim/nui.nvim',
-            'rcarriga/nvim-notify'
-        },
-        config = function ()
-            require("plugins.noice")
-        end
-    }]]
+    -- GENERAL/CORE
 
-    -- Searchbox
+    -- Sessions
     use {
-        'VonHeikemen/searchbox.nvim',
-        requires = {
-            {'MunifTanjim/nui.nvim'}
-        }
-    }
-
-    -- Git
-    use {
-        'lewis6991/gitsigns.nvim',
+        'rmagatti/auto-session',
         config = function()
-            require("plugins.gitsigns")
+            require("plugins.config.auto-session")
         end
     }
-    use 'tpope/vim-fugitive'
+    use {
+        'rmagatti/session-lens',
+        requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
+        config = function()
+            require("plugins.config.session-lens")
+        end
+    }
+
 
     -- Manage and install LSP servers
     use 'williamboman/mason-lspconfig.nvim'
     use {
         'williamboman/mason.nvim',
         config = function()
-            require("plugins.mason")
+            require("plugins.config.mason")
         end
     }
 
@@ -187,16 +148,16 @@ return packer.startup(function(use)
     use {
         'neovim/nvim-lspconfig',
         config = function()
-            require("plugins.lspconfig")
+            require("plugins.config.lspconfig")
         end
     }
 
-    -- Breadcrumbs
+    -- Breadcrumbs (not implemented yet)
     use {
         'SmiteshP/nvim-navic',
         requires = "neovim/nvim-lspconfig",
         config = function()
-            require("plugins.breadcrumbs")
+            require("plugins.config.breadcrumbs")
         end
     }
 
@@ -204,7 +165,7 @@ return packer.startup(function(use)
     use {
         'folke/which-key.nvim',
         config = function ()
-            require("plugins.which-key")
+            require("plugins.config.which-key")
         end
     }
 
@@ -212,7 +173,7 @@ return packer.startup(function(use)
     use {
         'hrsh7th/nvim-cmp',
         config = function()
-            require("plugins.cmp")
+            require("plugins.config.cmp")
         end
     }
     use 'hrsh7th/cmp-buffer'        -- nvim-cmp source for buffer words
@@ -230,7 +191,7 @@ return packer.startup(function(use)
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
         config = function()
-            require("plugins.trouble")
+            require("plugins.config.trouble")
         end
     }
 
@@ -246,7 +207,7 @@ return packer.startup(function(use)
             {'nvim-telescope/telescope-file-browser.nvim'}, -- file browser
         },
         config = function()
-            require("plugins.telescope")
+            require("plugins.config.telescope")
         end
     }
 
@@ -255,15 +216,7 @@ return packer.startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         config = function()
-            require("plugins.treesitter")
-        end
-    }
-
-    -- Spell checker?
-    use {
-        'lewis6991/spellsitter.nvim',
-        config = function()
-            require("plugins.spellsitter")
+            require("plugins.config.treesitter")
         end
     }
 

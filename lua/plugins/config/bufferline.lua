@@ -23,7 +23,6 @@ bufferline.setup {
             },
         },
     },
-
     highlights = {
         background = {
             italic = true,
@@ -32,5 +31,5 @@ bufferline.setup {
             bold = true,
             italic = false,
         },
-    }
+    },
 }
