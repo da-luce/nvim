@@ -34,7 +34,7 @@ db.custom_center = {
 
     {icon = '  ',
     desc = 'Find File                               ',
-    action = 'Telescope find_files find_command=rg,--hidden,--files',
+    action = 'Telescope find_files',
     shortcut = 'f'},
 
     {icon = '  ',
@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function ()
         vim.keymap.set("n", "s", ":Telescope session-lens search_session<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "r", ":Telescope oldfiles<CR>", { buffer = true, silent = true })
-        vim.keymap.set("n", "f", ":Telescope find_files find_command=rg, --hidden, --files<CR>", { buffer = true, silent = true })
+        vim.keymap.set("n", "f", ":Telescope find_files<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "b", ":Telescope file_browser<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "u", ":PackerSync<CR>", { buffer = true, silent = true })
         vim.keymap.set("n", "c", ":cd ~/.config/nvim/lua/ | e plugins/init.lua | NvimTreeOpen <CR>", { buffer = true, silent = true })
