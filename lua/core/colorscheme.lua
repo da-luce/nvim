@@ -10,8 +10,4 @@ vim.api.nvim_set_hl(0, 'DashboardFooter', { fg = "#ff9e64" })
 
 -- Other visual options (NOT WORKING)
 
--- vim.opt.list = true
-vim.opt.listchars:append "space:⋅"
--- vim.opt.listchars:append "eol:↴"
-vim.api.nvim_set_hl(0, 'IndentBlanklineContextStart', {})
 vim.g.tokyodark_transparent_background = true
