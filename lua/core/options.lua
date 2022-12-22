@@ -18,7 +18,7 @@ local options = {
     signcolumn = "yes",         -- permanent column for LSP & Git icons in gutter
     ruler = false,              -- hide line and column number of the cursor position in cmdline (already habe in statusline!)
     showmode = false,           -- don't show mode in the command line (already have in statusline!)
-    
+
     -- Interactions
 
     mouse = "a",                -- enable mouse in all modes
@@ -32,6 +32,17 @@ local options = {
     sidescrolloff = 8,          -- minimal number of screen columns to left and right of the cursor if wrap is `false`
 
     spelllang = "en_us",        -- spell check in US english
+
+    -- Character highlights
+
+    listchars = {
+        trail = '⋅',            -- shows trailing whitespaces
+        tab = '  ',             -- shows tabs as spaces (must override for some reason)
+    },
+    list = true,
+    fillchars = {
+        eob = ' ',               -- show empty lines at the end of a buffer as ` ` {default `~`}
+    }
 }
 
 -- Set options
@@ -39,17 +50,8 @@ for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
--- vim.opt.iskeyword:append("-")       -- treats words with `-` as single words
-
-vim.opt.fillchars = { --show empty lines at the end of a buffer as ` ` {default `~`}
-    eob = ' '
-}
-
-vim.opt.listchars = {
-    eol = ' ', 
-    space = ' '
-}   
-vim.opt.list = true
+-- Additional options 
+vim.opt.iskeyword:append("-")       -- treats words with `-` as single words
 
 vim.diagnostic.config({
     virtual_text = false,           -- Turn off inline diagnostics
