@@ -155,6 +155,20 @@ return packer.startup(function(use)
         end
     }
 
+    -- Formatting
+    use {
+        'jayp0521/mason-null-ls.nvim',
+        config = function ()
+            require("plugins.config.lsp.mason-null-ls")
+        end
+    }
+    use {
+        'jose-elias-alvarez/null-ls.nvim',
+        config = function ()
+            require("plugins.config.lsp.null-ls")
+        end
+    }
+
     -- Breadcrumbs (not implemented yet)
     use {
         'SmiteshP/nvim-navic',
@@ -220,6 +234,11 @@ return packer.startup(function(use)
         config = function()
             require("plugins.config.treesitter")
         end
+    }
+
+    use {
+        'sindrets/diffview.nvim',
+        requires = 'nvim-lua/plenary.nvim'
     }
 
 end)
