@@ -52,6 +52,9 @@ map("i", "jk", "<ESC>", opts)
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 
+-- LSP --
+-- See lua/plugins/config/lsp/lspconfig.lua
+
 -- PLUGINS --
 
 -- NvimTree
@@ -72,7 +75,3 @@ map("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.
 
 -- Lsp
 map("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
-
--- ToggleTerm
-map("n", "<leader>t", ":ToggleTerm<CR>", opts) -- Open a new terminal
-map("n", "<leader>tt", ":ToggleTermToggleAll<CR>", opts)

@@ -18,14 +18,3 @@ vim.api.nvim_create_autocmd(
         group = toggle_trailing,
     }
 )
-
--- Show diagnostic window on cursor move (TODO: find better method)
-vim.api.nvim_create_autocmd(
-    "CursorMoved",
-    {
-        desc = "Show diagnostic menu on cursor hover",
-        callback = function ()
-            vim.diagnostic.open_float()
-        end
-    }
-)
