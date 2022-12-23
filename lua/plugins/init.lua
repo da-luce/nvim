@@ -111,6 +111,12 @@ return packer.startup(function(use)
             require("plugins.config.autopairs")
         end
     }
+    use {
+        ' windwp/nvim-ts-autotag',
+        config = function ()
+            require("plugins.config.ts-autotag")
+        end
+    }
 
     -- Smooth scrolling
     use {
