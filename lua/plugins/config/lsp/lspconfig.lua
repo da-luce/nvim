@@ -74,6 +74,13 @@ lspconfig['eslint'].setup {
     root_dir = require('lspconfig').util.root_pattern('.js');
 }
 
+-- Setup html server (html)
+lspconfig['html'].setup {
+    apabilities = capabilities,
+	on_attach = on_attach,
+    root_dir = require('lspconfig').util.root_pattern('.html');
+}
+
 -- Setup sumneko_lua server (Lua)
 lspconfig['sumneko_lua'].setup {
     apabilities = capabilities,

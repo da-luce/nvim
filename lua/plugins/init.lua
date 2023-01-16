@@ -39,13 +39,29 @@ return packer.startup(function(use)
     use 'catppuccin/nvim'
     use 'sam4llis/nvim-tundra'
     use 'hoppercomplex/calvera-dark.nvim'
+    use {
+        'metalelf0/jellybeans-nvim',
+        requires = 'rktjmp/lush.nvim'
+    }
+    use 'cocopon/iceberg.vim'
+    use 'aktersnurra/no-clown-fiesta.nvim'
+    use 'sainnhe/everforest'
+    use 'arcticicestudio/nord-vim'
+    use 'FrenzyExists/aquarium-vim'
+    use 'dikiaap/minimalist'
+    use 'challenger-deep-theme/vim'
+    use 'yuttie/sublimetext-spacegray.vim'
+    use 'ackyshake/Spacegray.vim'
 
     -- Common dependencies
     use 'nvim-lua/plenary.nvim'
 
     -- Start screen
+
     use {
         'glepnir/dashboard-nvim',
+        -- Pin, more recent version breaks something
+        commit = '1aab263f4773106abecae06e684f762d20ef587e',
         config = function()
             require("plugins.config.dashboard")
         end
@@ -85,6 +101,23 @@ return packer.startup(function(use)
         end
     }
 
+    -- Replace UI for messages, cmdline and popupmenu 
+    use {
+        'folke/noice.nvim',
+        requires = {
+            "MunifTanjim/nui.nvim",
+            {
+                "rcarriga/nvim-notify",
+                config = function()
+                    require("plugins.config.notify")
+                end
+            },
+        },
+        config = function()
+            require("plugins.config.noice")
+        end
+    }
+
     -- EDITOR PLUGINS
 
     -- Git
@@ -112,7 +145,7 @@ return packer.startup(function(use)
         end
     }
     use {
-        ' windwp/nvim-ts-autotag',
+        'windwp/nvim-ts-autotag',
         config = function ()
             require("plugins.config.ts-autotag")
         end
@@ -161,6 +194,7 @@ return packer.startup(function(use)
         end
     }
 
+    --[[
     -- Formatting
     use {
         'jayp0521/mason-null-ls.nvim',
@@ -174,6 +208,7 @@ return packer.startup(function(use)
             require("plugins.config.lsp.null-ls")
         end
     }
+    ]]
 
     -- Breadcrumbs (not implemented yet)
     use {

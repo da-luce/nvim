@@ -5,7 +5,7 @@ require('lualine').setup {
         theme = "auto",
         style = "lvim",
         disabled_filetypes = { "alpha", "dashboard"},
-        globalstatus = true,
+        globalstatus = true,                                -- Use one status line instead of one for each window
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
 

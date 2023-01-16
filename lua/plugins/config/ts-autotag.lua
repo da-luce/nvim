@@ -1,6 +1,6 @@
 local status_ok, autotag = pcall(require, "autotag")
 if not status_ok then
-  return
+    return
 end
 
 autotag.setup({
