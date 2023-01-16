@@ -1,4 +1,4 @@
-vim.cmd[[colorscheme tokyonight-night]]
+vim.cmd[[colorscheme catppuccin-mocha]]
 
 vim.g.material_style = "deep ocean"
 
