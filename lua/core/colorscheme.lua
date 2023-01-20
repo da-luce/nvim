@@ -1,4 +1,4 @@
-vim.cmd[[colorscheme catppuccin-mocha]]
+vim.api.nvim_command("colorscheme catppuccin")
 
 vim.g.material_style = "deep ocean"
 

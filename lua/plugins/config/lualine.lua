@@ -27,10 +27,15 @@ require('lualine').setup {
         lualine_y = {},
         lualine_z = {},
     }]]
-    --[[
-    sections = {
+    --[[sections = {
         lualine_c = {
             { navic.get_location, cond = navic.is_available },
         }
+    },]]
+    --[[winbar = {
+        lualine_c = {navic.get_location}
+    },
+    inactive_winbar = {
+        lualine_c = {navic.get_location}
     }]]
 }

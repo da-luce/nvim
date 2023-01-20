@@ -30,6 +30,7 @@ local options = {
     undofile = true,            -- enable persistent undo (undotree is saved to a file when exiting buffer)
     wrap = false,               -- display lines as one long line
     sidescrolloff = 8,          -- minimal number of screen columns to left and right of the cursor if wrap is `false`
+    swapfile = false,           -- disable swap files
 
     -- Character highlights
 

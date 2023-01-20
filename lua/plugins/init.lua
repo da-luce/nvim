@@ -36,7 +36,12 @@ return packer.startup(function(use)
     -- Colorschemes
     use 'tiagovla/tokyodark.nvim'
     use 'folke/tokyonight.nvim'
-    use 'catppuccin/nvim'
+    use {
+        'catppuccin/nvim',
+        config = function ()
+            require("plugins.config.catppuccin")
+        end
+    }
     use 'sam4llis/nvim-tundra'
     use 'hoppercomplex/calvera-dark.nvim'
     use {
@@ -57,7 +62,6 @@ return packer.startup(function(use)
     use 'nvim-lua/plenary.nvim'
 
     -- Start screen
-
     use {
         'glepnir/dashboard-nvim',
         -- Pin, more recent version breaks something
@@ -101,7 +105,15 @@ return packer.startup(function(use)
         end
     }
 
-    -- Replace UI for messages, cmdline and popupmenu 
+    --[[ Other status line
+    use {
+        'feline-nvim/feline.nvim',
+        config = function ()
+            require("plugins.config.feline")
+        end
+    }]]
+
+    --[[ Replace UI for messages, cmdline and popupmenu 
     use {
         'folke/noice.nvim',
         requires = {
@@ -116,6 +128,16 @@ return packer.startup(function(use)
         config = function()
             require("plugins.config.noice")
         end
+    }
+    ]]
+
+    -- UI for nvim-lsp progress
+    use {
+        'j-hui/fidget.nvim',
+        config = function ()
+            require("plugins.config.fidget")
+        end
+
     }
 
     -- EDITOR PLUGINS
