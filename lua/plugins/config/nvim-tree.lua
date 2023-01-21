@@ -9,6 +9,9 @@ tree.setup {
         enable = true,
         update_cwd = true,
     },
+    view = {
+        adaptive_size = false,
+    },
     renderer = {
         root_folder_modifier = ":t",
         icons = {

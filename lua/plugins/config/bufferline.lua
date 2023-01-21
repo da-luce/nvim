@@ -11,7 +11,7 @@ bufferline.setup {
         left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
         right_mouse_command = "vertical sbuffer %d", -- can be a string | function, see "Mouse actions"
         separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
-        show_buffer_close_icons = false,
+        show_buffer_close_icons = true,
         tab_size = 20, -- increase tab size, default 18
         offsets = {
             {
@@ -19,7 +19,7 @@ bufferline.setup {
                 text = "",
                 -- Removing fixes tokyodark and doesn't seem to affect other themes
                 -- highlight = "PanelHeading",
-                padding = 1,
+                padding = 0,
                 text_align = "center",
                 separator = false
             },

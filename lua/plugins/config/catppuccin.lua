@@ -7,6 +7,12 @@ local flavour = vim.api.nvim_get_option("background") == "dark" and "mocha" or "
 vim.g.catppuccin_flavour = flavour
 
 catppuccin.setup({
+    integrations = {
+        navic = {
+            enabled = true,
+            custom_bg = "NONE",
+        },
+    },
 	transparent_background = false,
 	no_italic = false,
 	color_overrides = {
@@ -28,14 +34,16 @@ catppuccin.setup({
 		types = { "bold" },
 		operators = {},
 	},
+
 	custom_highlights = function(colors)
 		return {
-			NormalFloat = { bg = colors.crust },
-			FloatBorder = { bg = colors.crust, fg = colors.crust },
+		    -- NormalFloat = { fg = "", bg = colors.crust },
+			-- FloatBorder = { bg = colors.crust, fg = colors.crust },
 			VertSplit = { bg = colors.base, fg = colors.surface0 },
-			CursorLineNr = { fg = colors.mauve, style = { "bold" } },
-			PmenuSel = { bg = colors.surface0, fg = "" },
+			-- CursorLineNr = { fg = colors.mauve, style = { "bold" } },
+			-- PmenuSel = { bg = colors.surface0, fg = "" },
 
+            --[[
 			TelescopeSelection = { bg = colors.surface0 },
 			TelescopePromptCounter = { fg = colors.mauve, style = { "bold" } },
 
@@ -51,15 +59,18 @@ catppuccin.setup({
 			TelescopePromptTitle = { fg = colors.surface0, bg = colors.surface0 },
 			TelescopeResultsTitle = { fg = colors.mantle, bg = colors.mantle },
 			TelescopePreviewTitle = { fg = colors.crust, bg = colors.crust },
+            ]]
 
 			IndentBlanklineChar = { fg = colors.surface0 },
 			IndentBlanklineContextChar = { fg = colors.surface2 },
 
 			GitSignsChange = { fg = colors.peach },
 
+            --[[
 			NvimTreeIndentMarker = { link = "IndentBlanklineChar" },
 			NvimTreeExecFile = { fg = colors.text },
             NvimTreeWinSeparator = { fg = colors.crust, bg = colors.mantle }
+            ]]
 		}
 		end,
 })
